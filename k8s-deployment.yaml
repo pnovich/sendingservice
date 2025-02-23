@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sendingservice
+  labels:
+    app: sendingservice
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sendingservice
+  template:
+    metadata:
+      name: sendingservice
+      labels:
+        app: sendingservice
+    spec:
+      containers:
+        - name: sendingservice
+          image: sendingservice:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8090
+              protocol: TCP
+      restartPolicy: Always
+      
